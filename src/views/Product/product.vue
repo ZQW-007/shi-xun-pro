@@ -56,7 +56,7 @@ export default {
 .product{
   .header{
     .van-nav-bar{
-      background-color: #ee0a24;
+      background-color: #ff0073;
       ::v-deep .van-icon{
         color: #fff;
       }

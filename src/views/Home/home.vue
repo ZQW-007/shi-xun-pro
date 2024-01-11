@@ -2,7 +2,7 @@
   <div class="home">
     <div class="header">
       <!-- 搜索 -->
-      <van-search show-action v-model="value" shape="round" background="#ee0a24" placeholder="请输入菜品名称关键字">
+      <van-search show-action v-model="value" shape="round" background="#ff0073" placeholder="请输入菜品名称关键字">
         <template #action>
           <div @click="onSearch" class="search">搜索</div>
         </template>
