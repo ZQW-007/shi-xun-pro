@@ -51,8 +51,8 @@ import { Toast } from 'vant';
 export default {
   data() {
     return {
-      username: "趣多多",
-      password: "1314520",
+      username: "admin1",
+      password: "123321",
     };
   },
   methods: {
