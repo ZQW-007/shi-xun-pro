@@ -1,4 +1,4 @@
-# briup-wisdom-order
+# briup-order
 
 ## Project setup
 ```

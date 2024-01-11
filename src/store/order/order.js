@@ -32,7 +32,7 @@ export default {
     async findAllOrderData({ commit }, data){
       let res = await get('/order/pageQuery', data)
       commit('GET_AllOrderData', res.data.data.list)
-      console.log(res);
+      // console.log(res);
     },
     // 支付接口
     // async orderPay({ commit }, orderId){

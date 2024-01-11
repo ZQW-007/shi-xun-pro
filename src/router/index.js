@@ -42,11 +42,6 @@ const routes = [
         path: 'order',
         component: () => import('@/views/Order/order.vue')
       },
-      // 订单详情
-      {
-        path: 'orderDetail',
-        component: () => import('@/views/Order/orderDetail.vue')
-      },
       // 我的
       {
         path: 'mine',
@@ -57,19 +52,28 @@ const routes = [
         path: 'address',
         component: () => import('@/views/Mine/address.vue'),
       },
-      // 产品页面
-      {
-        path: 'product',
-        component: () => import('@/views/Product/product.vue'),
-      },
-      // 订单提交页面
-      {
-        path: 'orderConfirm',
-        component: () => import('@/views/Product/orderConfirm.vue'),
-      }
+      
+      
     ]
   },
-  
+  // 菜单页面
+  {
+    path: '/product',
+    name: 'Product',
+    component: () => import('@/views/Product/product.vue'),
+  },
+  // 订单提交页面
+  {
+    path: '/orderConfirm',
+    name: 'OrderConfirm',
+    component: () => import('@/views/Product/orderConfirm.vue'),
+  },
+  // 订单详情
+  {
+    path: '/orderDetail',
+    name: 'OrderDetail',
+    component: () => import('@/views/Order/orderDetail.vue')
+  },
 ]
 
 const router = new VueRouter({

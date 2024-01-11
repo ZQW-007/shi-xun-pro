@@ -20,8 +20,14 @@ export default {
     addShopcart(state, orderLine) {
       // map.set("key",value) 通过key 保存 value
       state.orderLines.set(orderLine.productId, orderLine);
+      state.orderLines.forEach((value, key) => {
+        if (value.num === 0) {
+          state.orderLines.delete(key);
+        }
+      });
       // 克隆对象改变引用地址，让监听机制监听到orderLines的变化
       state.orderLines = _.clone(state.orderLines)
+      // console.log(state.orderLines);
     },
     // 清空购物车
     clearShopcart(state) {

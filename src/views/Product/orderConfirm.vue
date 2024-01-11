@@ -2,12 +2,11 @@
   <div class="orderConfirm">
     <!-- 顶部导航栏 -->
     <van-sticky :offset-top="0">
-      <van-nav-bar
-        title="订单确认"
-        left-text="返回"
-        left-arrow
-        @click-left="onClickLeft"
-      />
+      <van-nav-bar title="订单确认" left-arrow @click-left="onClickLeft" @click-right="onClickRight">
+        <template #right>
+          <van-icon name="wap-home-o" size="18" />
+        </template>
+      </van-nav-bar>
     </van-sticky>
     <!-- 整体背景 -->
     <div class="bg">
@@ -25,7 +24,7 @@
         </template>
       </van-cell>
       <!-- 订单详情 -->
-      <van-cell size="large" title="订单详情" icon="orders-o" >
+      <van-cell size="large" title="订单详情" icon="orders-o">
         <template #label>
           <van-row v-for="line of orderLines.values()" :key="line.productId">
             <van-col span="8">{{line.name}}</van-col>
@@ -39,40 +38,21 @@
         </template>
       </van-cell>
       <!-- 买家留言 -->
-      <van-field
-        v-model="buyerMessage"
-        rows="2"
-        autosize
-        label="买家留言"
-        left-icon="comment-o"
-        type="textarea"
-        maxlength="50"
-        placeholder="请输入留言"
-        show-word-limit
-      />
+      <van-field v-model="buyerMessage" rows="2" autosize label="买家留言" left-icon="comment-o" type="textarea"
+        maxlength="50" placeholder="请输入留言" show-word-limit />
     </div>
     <!-- 地址选择器 -->
     <van-action-sheet v-model="showAddress" title="选择地址">
       <div class="content">
-        <van-address-list
-          v-model="chosenAddressId"
-          :list="addressList"
-          add-button-text="确定"
-          @add="onSave"
-        />
+        <van-address-list v-model="chosenAddressId" :list="addressList" add-button-text="确定" @add="onSave" />
       </div>
     </van-action-sheet>
     <!-- 充值 -->
     <van-action-sheet v-model="balanceShow" title="充值" @close="toClose">
       <van-form validate-first @submit="topUp">
         <!-- 通过 validator 进行函数校验 -->
-        <van-field
-          v-model="balance"
-          name="validator"
-          label="充值金额"
-          placeholder="请输入充值金额"
-          :rules="[{ validator, message: '单次充值金额不超过1000元' }]"
-        />
+        <van-field v-model="balance" name="validator" label="充值金额" placeholder="请输入充值金额"
+          :rules="[{ validator, message: '单次充值金额不超过1000元' }]" />
         <div style="margin: 16px;">
           <van-button color="#7879FF" round block type="info" native-type="submit">提交</van-button>
         </div>
@@ -84,8 +64,8 @@
 </template>
 
 <script>
-import {mapState,mapActions,mapGetters} from 'vuex'
-import {Dialog} from 'vant'
+import { mapState, mapActions, mapGetters } from 'vuex'
+import { Dialog } from 'vant'
 export default {
   data() {
     return {
@@ -104,7 +84,7 @@ export default {
       // 充值金额
       balance: '',
       // 买家留言
-      buyerMessage:''
+      buyerMessage: ''
     }
   },
   created() {
@@ -124,30 +104,30 @@ export default {
       })
     })
   },
-  computed:{
+  computed: {
     // 获取保存的订单信息
-    ...mapState('shopcart',['orderLines']),
+    ...mapState('shopcart', ['orderLines']),
     // 获取订单总价
-    ...mapGetters('shopcart',['total']),
+    ...mapGetters('shopcart', ['total']),
     // 获取地址列表
-    ...mapState('address',['addressData']),
+    ...mapState('address', ['addressData']),
     // 获取用户信息
-    ...mapState('user',['userInfo']),
+    ...mapState('user', ['userInfo']),
     // 根据地址数据生成匹配组件的地址数据
-    addressList(){
+    addressList() {
       // 筛选地址数据 生成匹配组件的数据
       let addressArr = this.addressData
       let addressList = []
       if (!addressArr) {
         return;
       }
-      addressArr.forEach((item,index) =>{
+      addressArr.forEach((item, index) => {
         let addressObj = {}
         addressObj.id = item.id,
-        addressObj.name = item.realname,
-        addressObj.tel = item.telephone,
-        addressObj.address = item.province + item.city + item.area + item.address,
-        addressObj.isDefault = item.isDefault
+          addressObj.name = item.realname,
+          addressObj.tel = item.telephone,
+          addressObj.address = item.province + item.city + item.area + item.address,
+          addressObj.isDefault = item.isDefault
         addressList.push(addressObj)
       });
       return addressList;
@@ -155,25 +135,25 @@ export default {
   },
   methods: {
     // 获取地址数据
-    ...mapActions('address',['getAddressData']),
+    ...mapActions('address', ['getAddressData']),
     // 获取用户信息
-    ...mapActions('user',['getUserInfo']),
+    ...mapActions('user', ['getUserInfo']),
     // 提交订单
-    ...mapActions('order',['SubmitOrder']),
+    ...mapActions('order', ['SubmitOrder']),
     // 余额充值
-    ...mapActions('recharge',['getRecharge']),
+    ...mapActions('recharge', ['getRecharge']),
     // 获取地址数据
-    getAddressList(){
+    getAddressList() {
       // 打开actionSheet
       this.showAddress = true
       // 获取地址数据
       this.getAddressData(this.userInfo.id)
     },
     // 选择地址确认
-    onSave(){
+    onSave() {
       // console.log(this.chosenAddressId);
       // 根据地址id筛选当前选择的地址
-      let addressObj = this.addressData.filter((item,index) =>{
+      let addressObj = this.addressData.filter((item, index) => {
         return item.id === this.chosenAddressId
       });
       // 根据选择的地址进行地址的更新
@@ -184,60 +164,61 @@ export default {
       this.showAddress = false
     },
     // 提交订单
-    confirm(){
+    confirm() {
       // 保存订单信息
       // 参数
       var obj = {
-          addressId:this.chosenAddressId,
-          customerId:this.userInfo.id,
-          buyerMessage: this.buyerMessage,
-          orderLines:Array.from(this.orderLines.values())
+        addressId: this.chosenAddressId,
+        customerId: this.userInfo.id,
+        buyerMessage: this.buyerMessage,
+        orderLines: Array.from(this.orderLines.values())
       }
       this.SubmitOrder(obj)
-      .then((response)=>{
-        // console.log(response);
-        if (response.data.message == '余额不足!') {
-          Dialog.confirm({
-            confirmButtonColor: '#7879FF',
-            message: "当前余额不足，是否充值？",
-          })
-          .then(() => {
-            // on confirm
-            // 弹出充值框
-            this.balanceShow = true
-          })
-          .catch(() => {
-            // on cancel
-          });
-        }else if(response.data.message == '操作成功'){
-          this.$notify({
-            type:'success',
-            message:response.data.message
-          });
-          // 路由跳转至订单页面
-          this.$router.push({path:'/manager/order'})
-          .then((res)=>{
-              // 获取订单数据
-          })
-        }else{
-          this.$notify({
-            type:'danger',
-            message:response.data.message
-          });
-        }
-      })
+        .then((response) => {
+          // console.log(response);
+          if (response.data.message == '余额不足!') {
+            Dialog.confirm({
+              confirmButtonColor: '#7879FF',
+              message: "当前余额不足，是否充值？",
+            })
+              .then(() => {
+                // on confirm
+                // 弹出充值框
+                this.balanceShow = true
+              })
+              .catch(() => {
+                // on cancel
+              });
+          } else if (response.data.message == '操作成功') {
+            this.$notify({
+              type: 'success',
+              message: response.data.message
+            });
+            // 路由跳转至订单页面
+            this.$router.push({ path: '/manager/order' })
+              .then((res) => {
+                // 获取订单数据
+
+              })
+          } else {
+            this.$notify({
+              type: 'danger',
+              message: response.data.message
+            });
+          }
+        })
     },
     // 充值金额校验函数返回 true 表示校验通过，false 表示不通过
     validator(val) {
       if (val < 0 || val > 1000) {
         return false
-      }else{
+      } else {
         return true
       }
     },
     // 充值
-    topUp(){
-      console.log(this.balance,this.userInfo.id);
+    topUp() {
+      console.log(this.balance, this.userInfo.id);
       let data = {
         customerId: this.userInfo.id,
         money: this.balance
@@ -246,52 +227,69 @@ export default {
         console.log(r);
         if (r.data.status == 200) {
           this.$notify({
-            type:'success',
-            message:r.data.message
+            type: 'success',
+            message: r.data.message
           });
           this.balanceShow = false
-        }else{
-           this.$notify({
-            type:'danger',
-            message:r.data.message
+        } else {
+          this.$notify({
+            type: 'danger',
+            message: r.data.message
           });
         }
       })
       // 实现充值逻辑
     },
     // 取消弹框
-    toClose(){
+    toClose() {
       // 余额置空
       this.balance = ''
     },
     // 返回上一级页面
-    onClickLeft(){
+    onClickLeft() {
       this.$router.go(-1)
-      console.log();
-      setTimeout(() => {
-        this.$store.state.shopcart.orderLines.clear()
-      }, 500);
+      // setTimeout(() => {
+      //   this.$store.state.shopcart.orderLines.clear()
+      // }, 500);
     },
+    onClickRight(){
+      this.$router.push({
+        path: '/manager/home'
+      })
+    }
   },
 };
 </script>
 
-<style scoped>
+<style scoped lang="less">
+.van-nav-bar {
+  background-color: #ee0a24;
+
+  ::v-deep .van-nav-bar__title {
+    color: white;
+  }
+
+  ::v-deep .van-icon {
+    color: #fff;
+  }
+}
+
 /* 整体背景颜色 */
-.bg .van-cell{
+.bg .van-cell {
   margin: 10px auto;
   /* height: 500px; */
   /* background-color: red; */
-  box-shadow: 2px 2px 2px 2px rgba(158, 117, 255, 0.2);
+  box-shadow: 2px 2px 2px 2px rgba(223, 132, 97, 0.2);
   transition: 0.3s;
   width: 95%;
   border-radius: 5px;
 }
+
 /* 提交按钮 */
 .confirm_btn {
   width: 53%;
   height: 40px;
-  background-image: linear-gradient(to right,#7579ff,#bf73ff);
+  background-image: linear-gradient(to right, #ea591d, #ee0a24);
   text-align: center;
   color: #fff;
   border-radius: 22px;
@@ -300,11 +298,13 @@ export default {
   margin-top: 2em;
   cursor: pointer;
 }
-.van-icon-edit{
-  display: none;  
+
+.van-icon-edit {
+  display: none;
 }
+
 /* 充值 */
-.cz{
+.cz {
   height: 80px;
   text-align: center;
 }

@@ -3,12 +3,6 @@
     <!-- 背景信息 -->
     <div class="bg"></div>
     <!-- 头部用户信息 -->
-    <!-- <div class="header">
-      <div class="avator">
-        <img :src="userInfo.userFace" alt="" />
-        <div class="username">您好，{{ userInfo.username }}</div>
-      </div>
-    </div> -->
     <div class="user">
       <div class="photo">
         <img width="100%" height="100%" :src="userInfo.userFace" />
@@ -26,9 +20,6 @@
     </div>
     <!-- 列表 -->
     <div class="cellArea">
-      <!-- <van-cell icon="location-o" title="常用地址" is-link to="" size="large"/>
-      <van-cell icon="phone-o" title="联系我们" is-link to="" size="large"/>
-      <van-cell icon="close" title="退出登录" is-link to="" size="large"/> -->
       <van-cell is-link to="address">
         <img width="20px" src="../../assets/address.png" alt="" />
         <div class="spanTitle">常用地址</div>
@@ -152,7 +143,7 @@ export default {
 /* 头部区域样式 */
 .mine .bg {
   height: 180px;
-  background-image: linear-gradient(to right, #FF5F6D, #FFC371);
+  background-image: linear-gradient(to right, #ea591d, #ee0a24);
   border-bottom-left-radius: 50%;
   border-bottom-right-radius: 50%;
 }
@@ -175,7 +166,7 @@ export default {
   width: 95px;
   height: 95px;
   border-radius: 50%;
-  background-color: #FF5F6D;
+  background-color: #f4dbc6;
   position: absolute;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -213,13 +204,13 @@ export default {
 .user .flex .flex_item p:last-child {
   font-size: 22px;
   margin-top: -10px;
-  color: #FF5F6D;
+  color: #ea591d;
 }
 /* cell样式 */
 .mine .cellArea{
   margin: 130px auto;
   /* height: 300px; */
-  box-shadow: 4px 4px 4px 0 rgba(158, 117, 255, 0.2);
+  box-shadow: 4px 4px 4px 0 rgba(223, 132, 97, 0.2);
   transition: 0.3s;
   width: 95%;
   border-radius: 5px;
@@ -240,7 +231,7 @@ export default {
 .logout_btn {
   width: 53%;
   height: 40px;
-  background-image: linear-gradient(to right,#FF5F6D, #FFC371);
+  background-image: linear-gradient(to right,#ea591d, #ee0a24);
   text-align: center;
   color: #fff;
   border-radius: 22px;
@@ -252,6 +243,6 @@ export default {
 .van-btn{
   margin-top: 17px;
   border: none;
-  background-image: linear-gradient(to right,#FF5F6D, #FFC371);
+  background-image: linear-gradient(to right, #ea591d, #ee0a24);
 }
 </style>

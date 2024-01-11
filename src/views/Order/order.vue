@@ -10,8 +10,8 @@
         @click="finishedHandler"
         v-model="active"
         sticky
-        color="#BF73FF"
-        title-active-color="#BF73FF"
+        color="#ea591d"
+        title-active-color="#ea591d"
       >
         <van-tab title="全部订单">
           <div v-if="orderList.length == 0">
@@ -28,7 +28,9 @@
                   >
                     <div class="order_item" @click="toDetail(item)">
                       <div class="flex_item1">
+                        <div v-if="item.orderLines[0].product == null"></div>
                         <img
+                          v-else
                           width="100%"
                           height="100%"
                           :src="item.orderLines[0].product.photo"
@@ -36,7 +38,9 @@
                         />
                       </div>
                       <div class="flex_item2">
-                        <span class="name">{{ item.orderLines[0].name }}等</span>
+                        <span class="name"
+                          >{{ item.orderLines[0].name }}等</span
+                        >
                         <span class="status">{{ item.status }}</span>
                         <p class="address">
                           {{
@@ -59,7 +63,7 @@
               </van-list>
             </div>
           </div>
-          <div style="height:15px"></div>
+          <div style="height: 15px"></div>
         </van-tab>
         <van-tab title="待支付">
           <div v-if="orderList.length == 0">
@@ -76,7 +80,9 @@
                   >
                     <div class="order_item" @click="toDetail(item)">
                       <div class="flex_item1">
+                        <div v-if="item.orderLines[0].product == null"></div>
                         <img
+                          v-else
                           width="100%"
                           height="100%"
                           :src="item.orderLines[0].product.photo"
@@ -84,7 +90,9 @@
                         />
                       </div>
                       <div class="flex_item2">
-                        <span class="name">{{ item.orderLines[0].name }}等</span>
+                        <span class="name"
+                          >{{ item.orderLines[0].name }}等</span
+                        >
                         <span class="status">{{ item.status }}</span>
                         <p class="address">
                           {{
@@ -107,7 +115,7 @@
               </van-list>
             </div>
           </div>
-          <div style="height:15px"></div>
+          <div style="height: 15px"></div>
         </van-tab>
         <van-tab title="待派送">
           <div v-if="orderList.length == 0">
@@ -124,7 +132,9 @@
                   >
                     <div class="order_item" @click="toDetail(item)">
                       <div class="flex_item1">
+                        <div v-if="item.orderLines[0].product == null"></div>
                         <img
+                          v-else
                           width="100%"
                           height="100%"
                           :src="item.orderLines[0].product.photo"
@@ -132,7 +142,9 @@
                         />
                       </div>
                       <div class="flex_item2">
-                        <span class="name">{{ item.orderLines[0].name }}等</span>
+                        <span class="name"
+                          >{{ item.orderLines[0].name }}等</span
+                        >
                         <span class="status">{{ item.status }}</span>
                         <p class="address">
                           {{
@@ -155,7 +167,7 @@
               </van-list>
             </div>
           </div>
-          <div style="height:15px"></div>
+          <div style="height: 15px"></div>
         </van-tab>
         <van-tab title="已完成">
           <div v-if="orderList.length == 0">
@@ -172,7 +184,9 @@
                   >
                     <div class="order_item" @click="toDetail(item)">
                       <div class="flex_item1">
+                        <div v-if="item.orderLines[0].product == null"></div>
                         <img
+                          v-else
                           width="100%"
                           height="100%"
                           :src="item.orderLines[0].product.photo"
@@ -180,7 +194,9 @@
                         />
                       </div>
                       <div class="flex_item2">
-                        <span class="name">{{ item.orderLines[0].name }}等</span>
+                        <span class="name"
+                          >{{ item.orderLines[0].name }}等</span
+                        >
                         <span class="status">{{ item.status }}</span>
                         <p class="address">
                           {{
@@ -203,7 +219,7 @@
               </van-list>
             </div>
           </div>
-          <div style="height:15px"></div>
+          <div style="height: 15px"></div>
         </van-tab>
       </van-tabs>
     </div>
@@ -279,17 +295,31 @@ export default {
       }
     },
     // 跳转到详情页
-    toDetail(item){
-      this.$router.push({ path: '/manager/orderDetail', query: { item } })
-    }
+    toDetail(item) {
+      this.$router.push({
+        path: "/OrderDetail",
+        query: { item }
+      });
+    },
   },
 };
 </script>
 
-<style scoped>
+<style scoped lang="less">
+.van-nav-bar {
+  background-color: #ee0a24;
+
+  ::v-deep .van-nav-bar__title {
+    color: white;
+  }
+
+  ::v-deep .van-icon {
+    color: #fff;
+  }
+}
 .order_main .title {
   height: 58px;
-  background-image: linear-gradient(to right, #bf73ff, #7579ff);
+  background-image: linear-gradient(to right, #ea591d, #ee0a24);
   text-align: center;
   line-height: 58px;
   color: #fff;
@@ -314,7 +344,7 @@ export default {
 .order .order_item .flex_item1 {
   width: 80px;
   height: 80px;
-  background-color: #9002bf;
+  background-color: #ea591d;
   border-radius: 50%;
 }
 .order .order_item .flex_item1 img {

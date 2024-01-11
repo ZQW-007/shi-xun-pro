@@ -14,9 +14,7 @@
       <!-- 左滑删除 -->
       <van-swipe-cell>
         <van-cell size="large">
-          <template #title> 
-            {{ item.realname }} {{ item.telephone }} 
-          </template>
+          <template #title> {{ item.realname }} {{ item.telephone }} </template>
           <template #label>
             {{ item.province + item.city + item.area + item.address }}
           </template>

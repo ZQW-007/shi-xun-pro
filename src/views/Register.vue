@@ -37,7 +37,7 @@
             size="large"
           />
           <div style="margin: 16px">
-            <van-button color="linear-gradient(to right, #ff9068, #ff4b1f)" round block type="info" native-type="submit">
+            <van-button color="linear-gradient(to right, #bdb4b7, #ea591d)" round block type="info" native-type="submit">
             注册
             </van-button>
           </div>
@@ -100,8 +100,11 @@ export default {
 .login {
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(#ff4b1f, #ff9068);
+  /* background-image: linear-gradient(#ff4b1f, #ff9068); */
   overflow: hidden;
+  background-image: url(../../public/bg_img.webp);
+  background-size: 120% 100%;
+  filter: opacity(0.9);
 }
 /* 头部样式 */
 .header{
@@ -139,7 +142,7 @@ export default {
   width: 90%;
   border-radius: 5px;
   margin: 265px auto;
-  height: 250px;
+  height: 270px;
   padding: 10px;
 }
 .loginArea:hover {
@@ -151,7 +154,7 @@ export default {
 }
 /* 注册样式 */
 .signUp{
-  color: #11998e;
+  color: #df8461;
   text-align: center;
   font-size: 14px;
   letter-spacing: .05em;
