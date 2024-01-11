@@ -3,7 +3,7 @@
     <!-- 头部信息展示区 -->
     <div class="header">
       <div class="title">
-        杰普点餐
+        闻雯饭庄
       </div>
     </div>
     <!-- 登录区域 -->
@@ -51,8 +51,8 @@ import { Toast } from 'vant';
 export default {
   data() {
     return {
-      username: "admin1",
-      password: "123321",
+      username: "趣多多",
+      password: "1314520",
     };
   },
   methods: {
@@ -91,8 +91,8 @@ export default {
 .login {
   width: 100%;
   height: 100%;
-  background-image: url(../../public/bg_img.webp);
-  background-size: 120% 100%;
+  background-image: url(../../public/bg.jpg);
+  background-size: 100% 100%;
   filter: opacity(0.9);
   /* background-image: linear-gradient(#ff4b1f, #ff9068); */
   overflow: hidden;
@@ -101,8 +101,9 @@ export default {
 .header{
   width: 100%;
   position: absolute;
-  text-align: center;
-  top: 120px;
+  left: 20px;
+  top: 150px;
+
 }
 /* 标题样式 */
 .header .title{
@@ -122,21 +123,23 @@ export default {
 }
 /* 中间登录输入区域 卡片样式 */
 .loginArea {
-  box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2);
-  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(255, 0, 0, 0.5);
+  background-color: rgba(255, 255, 255, 0.5); /*设置透明度为0.5*/
   transition: 0.3s;
   width: 90%;
   border-radius: 5px;
-  margin: 265px auto;
-  height: 250px;
+  margin: 369px auto;
+  height: 240px;
   padding: 10px;
 }
 .loginArea:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px 0 rgba(255, 15, 15, 0.5);
+  background-color: rgba(255, 255, 255, 0.5); /*设置透明度为0.5*/
 }
 /* 输入框整体样式 */
 .loginForm{
   padding-top: 20px;
+  background-color: rgba(255, 255, 255, 0.5); /*设置透明度为0.5*/
 }
 /* 注册样式 */
 .signUp{
