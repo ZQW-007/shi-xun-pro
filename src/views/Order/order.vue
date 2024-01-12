@@ -10,7 +10,7 @@
         @click="finishedHandler"
         v-model="active"
         sticky
-        color="#ea591d"
+        background="bg.jpg"
         title-active-color="#ea591d"
       >
         <van-tab title="全部订单">
