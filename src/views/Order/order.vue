@@ -10,7 +10,7 @@
         @click="finishedHandler"
         v-model="active"
         sticky
-        background="bg.jpg"
+        color="#ea591d"
         title-active-color="#ea591d"
       >
         <van-tab title="全部订单">
@@ -26,7 +26,8 @@
                     v-for="item in orderList"
                     :key="item.id"
                   >
-                    <div class="order_item" @click="toDetail(item)">
+                    <div v-if="item.orderLines[0] == undefined"></div>
+                    <div v-else class="order_item" @click="toDetail(item)">
                       <div class="flex_item1">
                         <div v-if="item.orderLines[0].product == null"></div>
                         <img
@@ -78,7 +79,8 @@
                     v-for="item in orderList"
                     :key="item.id"
                   >
-                    <div class="order_item" @click="toDetail(item)">
+                    <div v-if="item.orderLines[0] == undefined"></div>
+                    <div v-else class="order_item" @click="toDetail(item)">
                       <div class="flex_item1">
                         <div v-if="item.orderLines[0].product == null"></div>
                         <img
@@ -130,7 +132,8 @@
                     v-for="item in orderList"
                     :key="item.id"
                   >
-                    <div class="order_item" @click="toDetail(item)">
+                    <div v-if="item.orderLines[0] == undefined"></div>
+                    <div v-else class="order_item" @click="toDetail(item)">
                       <div class="flex_item1">
                         <div v-if="item.orderLines[0].product == null"></div>
                         <img
@@ -182,7 +185,8 @@
                     v-for="item in orderList"
                     :key="item.id"
                   >
-                    <div class="order_item" @click="toDetail(item)">
+                    <div v-if="item.orderLines[0] == undefined"></div>
+                    <div v-else class="order_item" @click="toDetail(item)">
                       <div class="flex_item1">
                         <div v-if="item.orderLines[0].product == null"></div>
                         <img
@@ -298,7 +302,7 @@ export default {
     toDetail(item) {
       this.$router.push({
         path: "/OrderDetail",
-        query: { item }
+        query: { item: JSON.stringify(item) }
       });
     },
   },

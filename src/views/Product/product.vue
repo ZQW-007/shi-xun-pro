@@ -44,8 +44,8 @@
 
       <!-- 总价格和去下单 -->
       <div class="bottom">
-        <div class="total" @click="show = true">￥ {{ total.toFixed(2) }}</div>
-        <div class="btn">去下单</div>
+        <div class="total" @click="showOverlay">￥ {{ total.toFixed(2) }}</div>
+        <div class="btn" @click="toOrder">去下单</div>
       </div>
 
       <!-- 遮罩层:显示购物车数据 -->
@@ -53,7 +53,7 @@
         <div class="wrapper">
           <div class="block" @click.stop>
             <!-- 清空购物车 -->
-            <div class="clear">
+            <div class="clear" @click="clear">
               <span>清空购物车</span>
               <van-icon name="delete-o" />
             </div>
@@ -87,6 +87,10 @@
 <script>
 import { mapMutations, mapState, mapGetters } from 'vuex'
 import { get } from '@/http/axios.js'
+import Vue from 'vue';
+import { Toast } from 'vant';
+
+Vue.use(Toast);
 export default {
   data(){
     return {
@@ -105,17 +109,23 @@ export default {
     ...mapState('shopcart', ['orderLines']),
     ...mapGetters('shopcart', ['total'])
   },
+  watch: {
+    // 侦听total，价格为0，关闭遮罩层
+    total(newValue){
+      if(newValue==0){
+        this.show = false
+      }
+    }
+  },
   methods: {
-    ...mapMutations('shopcart',['addShopcart']),
+    ...mapMutations('shopcart',['addShopcart','clearShopcart']),
 
     // 返回
     onClickLeft(){
       this.$router.go(-1)
     },
-    // 获取商品树
-    async getAll(){
-      let { data } = await get('/app/product/queryCategoryWithProducts')
-      this.list = data.data
+    // 根据orderLines显示菜品数量
+    changeProducts(){
       // 将购物车的菜品数量反应到步进器
       this.orderLines.forEach((value,key)=>{
         // console.log(value,key)
@@ -130,6 +140,12 @@ export default {
         })
       })
       this.products = this.list[this.activeKey].products
+    },
+    // 获取商品树
+    async getAll(){
+      let { data } = await get('/app/product/queryCategoryWithProducts')
+      this.list = data.data
+      this.changeProducts()
       // console.log(this.list)
       // console.log(this.products)
       // console.log(data.data)
@@ -142,7 +158,29 @@ export default {
     changeShopCart(item){
       item.productId = item.id
       this.addShopcart(item)
+      this.getAll()
+      // console.log(this.orderLines)
     },
+    // 清空购物车
+    clear(){
+      this.clearShopcart()
+      this.show = false
+      this.getAll()
+      Toast('购物车已清空！')
+    },
+    // 点击价格显示遮罩层
+    showOverlay(){
+      if(this.total !== 0){
+        // 总价格不等于0的时候，显示遮罩层
+        this.show = true
+      }
+    },
+    // 跳转到下单页面
+    toOrder(){
+      this.$router.push({
+        path: '/orderConfirm'
+      })
+    }
   },
   created(){
     this.getAll()
@@ -226,16 +264,30 @@ export default {
       border-top-left-radius: 20px;
       border-top-right-radius: 20px;
       width: 100vw;
-      height: 40vh;
+      max-height: 60vh;
+      overflow-y: scroll;
       background-color: #fff;
       .clear{
-        margin: 5px 0;
+        padding: 5px 0;
         font-size: 14px;
         color: #c0c0c0;
         height: 20px;
         display: flex;
         justify-content: center;
         align-items: flex-end;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        width: 100%;
+        background-color: #fff;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+      }
+      // .van-card:nth-child(2){
+      //   margin-top: 30px;
+      // }
+      .van-card:last-child{
+        margin-bottom: 60px;
       }
     }
   }
