@@ -44,7 +44,9 @@
     <!-- 地址选择器 -->
     <van-action-sheet v-model="showAddress" title="选择地址">
       <div class="content">
-        <van-address-list v-model="chosenAddressId" :list="addressList" add-button-text="确定" @add="onSave" />
+        <van-address-list v-model="chosenAddressId" :list="addressList" 
+        background="linear-gradient(rgba(230, 230, 230, 0.6), rgb(44, 160, 255))"
+        add-button-text="确定" @add="onSave" />
       </div>
     </van-action-sheet>
     <!-- 充值 -->
@@ -54,7 +56,7 @@
         <van-field v-model="balance" name="validator" label="充值金额" placeholder="请输入充值金额"
           :rules="[{ validator, message: '单次充值金额不超过1000元' }]" />
         <div style="margin: 16px;">
-          <van-button color="#7879FF" round block type="info" native-type="submit">提交</van-button>
+          <van-button color="#FFFFFF" round block type="info" native-type="submit">提交</van-button>
         </div>
       </van-form>
     </van-action-sheet>
@@ -266,7 +268,7 @@ export default {
 
 <style scoped lang="less">
 .van-nav-bar {
-  background-color: #ee0a24;
+  background:linear-gradient(rgba(255, 255, 251,0.6), rgb(44, 160, 251));
 
   ::v-deep .van-nav-bar__title {
     color: white;
@@ -292,7 +294,7 @@ export default {
 .confirm_btn {
   width: 53%;
   height: 40px;
-  background-image: linear-gradient(to right, #ea591d, #ee0a24);
+  background-image: linear-gradient(to right, rgb(255, 255, 255), rgb(44, 160, 251));
   text-align: center;
   color: #fff;
   border-radius: 22px;

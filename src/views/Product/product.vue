@@ -201,7 +201,7 @@ export default {
 .product{
   .header{
     .van-nav-bar{
-      background-color: #ee0a24;
+      background:linear-gradient(rgba(255, 255, 251,0.6), rgb(44, 160, 251));
       ::v-deep .van-icon{
         color: #fff;
       }
@@ -215,7 +215,7 @@ export default {
     width: 100vw;
     // height: 100vh;
     // overflow-y: scroll;
-    background-color: #f2f3f5;
+    background-color: #ffffff;
     padding-top: 46px;
     display: flex;
     .left{
@@ -249,7 +249,7 @@ export default {
         padding-left: 20px;
         font-size: 20px;
         flex: 1;
-        background-color: black;
+        background:linear-gradient(rgba(255, 255, 251,0.6), rgb(44, 160, 251));
         border-top-left-radius: 20px;
         border-bottom-left-radius: 20px;
       }
@@ -257,7 +257,7 @@ export default {
         text-align: center;
         font-size: 18px;
         width: 80px;
-        background-color: #ee0a24;
+        background:linear-gradient(rgba(255, 255, 251,0.6), rgb(44, 160, 251));
         border-top-right-radius: 20px;
         border-bottom-right-radius: 20px;
       }

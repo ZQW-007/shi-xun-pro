@@ -5,7 +5,7 @@
     <!-- 头部用户信息 -->
     <div class="user">
       <div class="photo">
-        <img width="100%" height="100%" :src="userInfo.userFace" />
+        <img width="100%" height="100%" src="../../assets/bg.jpg" />
       </div>
       <p class="name">{{ userInfo.username }}</p>
       <div class="flex">
@@ -142,21 +142,24 @@ export default {
 <style scoped>
 /* 头部区域样式 */
 .mine .bg {
-  height: 180px;
-  background-image: linear-gradient(to right, #ea591d, #ee0a24);
-  border-bottom-left-radius: 50%;
-  border-bottom-right-radius: 50%;
+  height: 310px;
+  /*background: linear-gradient(rgba(251, 0, 255, 0.629), rgb(44, 44, 251));
+  */
+  background: url(../../assets/bg.jpg);
+  opacity: 0.5;
+  border-bottom-left-radius: 10%;
+  border-bottom-right-radius: 10%;
 }
 /* 用户区域样式 */
 .mine .user {
   width: 80%;
   height: 170px;
-  background-color: #fff;
+  background: url(../../assets/bg.jpg);
   position: absolute;
   top: 170px;
   left: 50%;
   transform: translate(-50%, -50%);
-  opacity: 0.8;
+  opacity: 1.0;
   box-shadow: 0 0 10px #ccc;
   border-radius: 8px;
   padding: 0 1em;
@@ -166,9 +169,9 @@ export default {
   width: 95px;
   height: 95px;
   border-radius: 50%;
-  background-color: #f4dbc6;
   position: absolute;
   left: 50%;
+  opacity: 1.0;
   transform: translate(-50%, -50%);
 }
 /* 用户头像图片样式 */
@@ -176,6 +179,7 @@ export default {
   width: 100%;
   height: 100%;
   border-radius: 50%;
+  opacity: 1.0;
 }
 /* 用户用户名样式 */
 .user .name {
@@ -183,6 +187,8 @@ export default {
   margin: 0 auto;
   margin-top: 3.5em;
   text-align: center;
+  color: #ffffff;
+  opacity: 0.8;
 }
 /*  */
 .user .flex {
@@ -199,7 +205,8 @@ export default {
 .user .flex .flex_item p:first-child {
   margin-top: 15px;
   font-size: 16px;
-  color: #999;
+  color: #ffffff;
+  opacity: 0.8;
 }
 .user .flex .flex_item p:last-child {
   font-size: 22px;
@@ -208,7 +215,7 @@ export default {
 }
 /* cell样式 */
 .mine .cellArea{
-  margin: 130px auto;
+  margin: 10px auto;
   /* height: 300px; */
   box-shadow: 4px 4px 4px 0 rgba(223, 132, 97, 0.2);
   transition: 0.3s;

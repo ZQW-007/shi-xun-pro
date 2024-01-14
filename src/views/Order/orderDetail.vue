@@ -104,7 +104,7 @@ export default {
 <style lang="less" scoped>
 .header{
   .van-nav-bar{
-    background-color: #ee0a24;
+    background:linear-gradient(rgba(255, 255, 251,0.6), rgb(44, 160, 251));
     ::v-deep .van-icon{
       color: #fff;
     }
@@ -122,7 +122,7 @@ export default {
   box-sizing: border-box;
   height: 100vh;
   overflow-y: scroll;
-  background-color: #f2f3f5;
+  background-color: #ffffff;
   .status{
     margin-top: 10px;
   }

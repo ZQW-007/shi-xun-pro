@@ -2,7 +2,7 @@
   <div class="home">
     <div class="header">
       <!-- 搜索 -->
-      <van-search show-action v-model="value" shape="round" background="#ff0073" placeholder="请输入菜品名称关键字">
+      <van-search show-action v-model="value" shape="round" background="linear-gradient(rgba(230, 230, 230, 0.629), rgb(44, 150, 251))" placeholder="请输入菜品名称关键字">
         <template #action>
           <div @click="onSearch" class="search">搜索</div>
         </template>
@@ -118,7 +118,7 @@ export default {
     width: 100%;
     z-index: 10;
     .search{
-      color: #fff;
+      color: #ffffff;
     }
   }
   // 轮播图

@@ -2,7 +2,7 @@
   <div class="Order">
     <!-- 顶部导航栏 -->
     <van-sticky :offset-top="0">
-      <van-nav-bar title="订单" />
+      <van-nav-bar  title="订单" />
     </van-sticky>
     <!-- tab -->
     <div class="tab">
@@ -10,7 +10,7 @@
         @click="finishedHandler"
         v-model="active"
         sticky
-        color="#ea591d"
+        background="linear-gradient(rgba(230, 230, 230, 0.6), rgb(44, 160, 255))"
         title-active-color="#ea591d"
       >
         <van-tab title="全部订单">
@@ -311,10 +311,10 @@ export default {
 
 <style scoped lang="less">
 .van-nav-bar {
-  background-color: #ee0a24;
-
+  /*background:linear-gradient(rgba(44, 255, 255, 0.629), rgb(250, 250, 251));*/
+  background:linear-gradient(rgba(44, 150, 251,0.6), rgb(255, 255, 251));
   ::v-deep .van-nav-bar__title {
-    color: white;
+    color: rgb(0, 0, 0);
   }
 
   ::v-deep .van-icon {
