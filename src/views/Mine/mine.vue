@@ -24,7 +24,7 @@
         <img width="20px" src="../../assets/address.png" alt="" />
         <div class="spanTitle">常用地址</div>
       </van-cell>
-      <van-cell is-link>
+      <van-cell is-link to="our">
         <img width="20px" src="../../assets/lianxi.png" alt="" />
         <div class="spanTitle">联系我们</div>
       </van-cell>
