@@ -166,6 +166,9 @@ export default {
     // 提交订单
     confirm() {
       // 保存订单信息
+      this.orderLines.forEach((value,key)=>{
+        delete value.id
+      })
       // 参数
       var obj = {
         addressId: this.chosenAddressId,

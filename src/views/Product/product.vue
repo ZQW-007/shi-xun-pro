@@ -65,6 +65,9 @@
               :title="value.name"
               :thumb="value.photo"
             >
+              <template #footer>
+                <van-icon name="clear" @click="delPro(value)" color="#bbb" size="1rem"/>
+              </template>
               <template #desc>
                 <!-- 描述信息最多显示一行，超出部分省略 -->
                 <div class="van-ellipsis">
@@ -73,7 +76,7 @@
               </template>
               <template #num>
                 <div>
-                  <van-stepper v-model="value.num" @change="changeShopCart(value)" default-value="0" min="0"/>
+                  <van-stepper v-model="value.num" @change="changeShopCart(value)" min="1"/>
                 </div>
               </template>
             </van-card>
@@ -167,6 +170,12 @@ export default {
       this.show = false
       this.getAll()
       Toast('购物车已清空！')
+    },
+    delPro(item){
+      item.productId = item.id
+      item.num = 0
+      this.addShopcart(item)
+      this.getAll()
     },
     // 点击价格显示遮罩层
     showOverlay(){
@@ -288,6 +297,10 @@ export default {
       // }
       .van-card:last-child{
         margin-bottom: 60px;
+      }
+      .van-card__footer{
+        float: right;
+        margin-top: -100px;
       }
     }
   }
