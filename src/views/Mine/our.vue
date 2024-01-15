@@ -23,11 +23,11 @@
     </div>
 </template>
 <script>
-
 export default {
     // 返回上一级页面
+    methods:{
     onClickLeft() {
         this.$router.go(-1);
-    }
+    }}
 }
 </script>

@@ -123,7 +123,7 @@ export default {
   methods: {
     ...mapMutations('shopcart',['addShopcart','clearShopcart']),
 
-    // 返回
+    /*返回*/
     onClickLeft(){
       this.$router.go(-1)
     },
@@ -142,7 +142,7 @@ export default {
           }
         })
       })
-      this.products = this.list[this.activeKey].products
+      .this.products = this.list[this.activeKey].products
     },
     // 获取商品树
     async getAll(){
